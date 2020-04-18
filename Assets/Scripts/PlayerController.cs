@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     bool isGrounded;
 
     public GameObject treat;
-    public Transform treatHolder;
+    Transform treatHolder;
     public Transform treatSpawnLocation;
 
     // Update is called once per frame
@@ -54,16 +54,25 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0))
         {
-            Treat t = Instantiate(treat, treatHolder).GetComponent<Treat>();
-            t.GetComponent<Transform>().position = treatSpawnLocation.position;
-            t.GetComponent<Transform>().rotation = UnityEngine.Random.rotation;
-            t.GetComponent<Rigidbody>().AddForce((treatSpawnLocation.forward + move) * treatLaunchSpeed);
-            if(onThrowTreat != null)
-            {
-                onThrowTreat(t);
-            }
+                    
+            Treat currentTreatThrown = Instantiate(treat, treatHolder).GetComponent<Treat>();
+            currentTreatThrown.GetComponent<Transform>().position = treatSpawnLocation.position;
+            currentTreatThrown.GetComponent<Transform>().rotation = UnityEngine.Random.rotation;
+            currentTreatThrown.GetComponent<Rigidbody>().AddForce((treatSpawnLocation.forward + move) * treatLaunchSpeed);
+            onThrowTreat?.Invoke(currentTreatThrown);
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            GameController.ResetLevel();
         }
         
 
+    }
+
+    private void Start()
+    {
+        treatHolder = new GameObject().transform;
+        treatHolder.name = "treat holder";
     }
 }

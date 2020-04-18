@@ -7,6 +7,7 @@ public class DogMove : MonoBehaviour
     public float dogMoveSpeed = 4f;
     public bool autoWalk;
     private Transform target;
+    private Treat currentTreat;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,11 +17,14 @@ public class DogMove : MonoBehaviour
     private void Player_OnThrow(Treat t)
     {
         t.onHitGround += Treat_OnHitGround;
+        currentTreat = t;
     }
 
     void Treat_OnHitGround(Transform t)
     {
         target = t;
+        currentTreat.onHitGround -= Treat_OnHitGround;
+
     }
 
     // Update is called once per frame
@@ -34,8 +38,6 @@ public class DogMove : MonoBehaviour
         {
             float step = dogMoveSpeed * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, target.position, step);
-            float d = Vector3.Distance(transform.position, target.position);
-            print(d);
             if (Vector3.Distance(transform.position, target.position) < 1f)
             {
                 target = null;

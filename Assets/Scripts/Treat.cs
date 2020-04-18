@@ -16,6 +16,17 @@ public class Treat : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        PlayerController.onThrowTreat += Player_OnThrowTreat;
+    }
+
+    void Player_OnThrowTreat(Treat t)
+    {
+        PlayerController.onThrowTreat -= Player_OnThrowTreat;
+        Destroy(gameObject);
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         triggerEvent();

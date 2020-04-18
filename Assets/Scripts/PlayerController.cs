@@ -1,9 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static event Action<Treat> onThrowTreat;
 
     public float treatLaunchSpeed = 10f;
 
@@ -52,10 +54,14 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetMouseButtonDown(0))
         {
-            GameObject t = Instantiate(treat, treatHolder);
+            Treat t = Instantiate(treat, treatHolder).GetComponent<Treat>();
             t.GetComponent<Transform>().position = treatSpawnLocation.position;
-            t.GetComponent<Transform>().rotation = Random.rotation;
+            t.GetComponent<Transform>().rotation = UnityEngine.Random.rotation;
             t.GetComponent<Rigidbody>().AddForce((treatSpawnLocation.forward + move) * treatLaunchSpeed);
+            if(onThrowTreat != null)
+            {
+                onThrowTreat(t);
+            }
         }
         
 

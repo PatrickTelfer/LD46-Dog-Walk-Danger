@@ -21,14 +21,22 @@ public class Treat : MonoBehaviour
         PlayerController.onThrowTreat += Player_OnThrowTreat;
     }
 
-    void Player_OnThrowTreat(Treat t)
+    void Player_OnThrowTreat(Treat obj)
     {
         PlayerController.onThrowTreat -= Player_OnThrowTreat;
-        Destroy(gameObject);
+
+        if (this != null)
+        {
+            Destroy(gameObject);
+        }
+             
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        triggerEvent();
+        if (collision.gameObject.tag != "player")
+        {
+            triggerEvent();
+        }
     }
 }

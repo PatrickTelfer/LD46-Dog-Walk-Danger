@@ -29,8 +29,14 @@ public class Goal : MonoBehaviour
 
         Time.timeScale = 0.3f;
         yield return new WaitForSeconds(time);
+        GameObject musicPlayer = GameObject.FindGameObjectWithTag("music");
+        if (musicPlayer != null)
+        {
+            DontDestroyOnLoad(musicPlayer);
 
+        }
         SceneManager.LoadScene(nextSceneIndex, LoadSceneMode.Single);
+        GameController.win = false;
         Time.timeScale = 1;
         yield return null;
     }

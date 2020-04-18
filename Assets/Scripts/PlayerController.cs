@@ -25,6 +25,10 @@ public class PlayerController : MonoBehaviour
     Transform treatHolder;
     public Transform treatSpawnLocation;
 
+    Vector3 move;
+
+    bool throwRequired = false;
+
     // Update is called once per frame
     void Update()
     {
@@ -38,7 +42,7 @@ public class PlayerController : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
-        Vector3 move = transform.right * x + transform.forward * z;
+        move = transform.right * x + transform.forward * z;
 
         controller.Move(move * speed * Time.deltaTime);
 
@@ -51,22 +55,22 @@ public class PlayerController : MonoBehaviour
 
         controller.Move(velocity * Time.deltaTime);
 
-
-        if(Input.GetMouseButtonDown(0))
-        {
-                    
-            Treat currentTreatThrown = Instantiate(treat, treatHolder).GetComponent<Treat>();
-            currentTreatThrown.GetComponent<Transform>().position = treatSpawnLocation.position;
-            currentTreatThrown.GetComponent<Transform>().rotation = UnityEngine.Random.rotation;
-            currentTreatThrown.GetComponent<Rigidbody>().AddForce((treatSpawnLocation.forward + move) * treatLaunchSpeed);
-            onThrowTreat?.Invoke(currentTreatThrown);
-        }
-
         if (Input.GetKeyDown(KeyCode.R))
         {
             GameController.ResetLevel();
         }
-        
+
+        throwRequired = Input.GetMouseButtonDown(0);
+
+        if (throwRequired)
+        {
+            Debug.Log("hi");
+            Treat currentTreatThrown = Instantiate(treat, treatHolder).GetComponent<Treat>();
+            currentTreatThrown.GetComponent<Transform>().position = treatSpawnLocation.position;
+            //currentTreatThrown.GetComponent<Transform>().rotation = UnityEngine.Random.rotation;
+            currentTreatThrown.GetComponent<Rigidbody>().AddForce((treatSpawnLocation.forward) * treatLaunchSpeed);
+            onThrowTreat?.Invoke(currentTreatThrown);
+        }
 
     }
 

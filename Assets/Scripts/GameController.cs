@@ -7,6 +7,11 @@ public class GameController : MonoBehaviour
 {
 
     public static bool win = false;
+
+    private void Start()
+    {
+        
+    }
     public static void ResetLevel()
     {
         if (win)

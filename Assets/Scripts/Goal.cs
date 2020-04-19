@@ -32,16 +32,24 @@ public class Goal : MonoBehaviour
 
         Time.timeScale = 0.3f;
         yield return new WaitForSeconds(time);
+
         GameObject[] musicPlayers = GameObject.FindGameObjectsWithTag("music");
         if (musicPlayers != null)
         {
-            foreach(GameObject o in musicPlayers)
+            foreach (GameObject o in musicPlayers)
             {
                 DontDestroyOnLoad(o);
             }
 
         }
-        SceneManager.LoadScene(nextSceneIndex, LoadSceneMode.Single);
+        if (FindObjectOfType<GameController>() != null)
+        {
+            DontDestroyOnLoad(FindObjectOfType<GameController>());
+
+        }
+
+
+        SceneManager.LoadScene(nextSceneIndex);
         GameController.win = false;
         Time.timeScale = 1;
         yield return null;

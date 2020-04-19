@@ -97,9 +97,9 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: c16e8fd99b3f06b45af1fe88bd475570,
+  m_LightingDataAsset: {fileID: 112000000, guid: 01a20f65a8c9af347afee5460bf23e2b,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -128,7 +128,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-96272
+  m_Name: pb_Mesh-148354
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -320,7 +320,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -546,7 +546,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-96284
+  m_Name: pb_Mesh-148322
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -769,6 +769,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4827354339029986510, guid: b51cf26606b0c714b8dffc98e738a144,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b51cf26606b0c714b8dffc98e738a144, type: 3}
@@ -1059,6 +1064,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6768768033348320371, guid: 78180800fd3615449bb6cff5d485ee0d,
+        type: 3}
+      propertyPath: nextSceneIndex
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6768768033436939189, guid: 78180800fd3615449bb6cff5d485ee0d,
         type: 3}
@@ -14642,7 +14652,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: df305fcb8a8aa934a8d05e8aae546a2f, type: 2}
+  - {fileID: 2100000, guid: 9eb3f52bd23bc2547840427a5fb677d4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

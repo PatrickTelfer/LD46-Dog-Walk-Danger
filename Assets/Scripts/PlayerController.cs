@@ -60,14 +60,13 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            GameController.ResetLevel();
+            FindObjectOfType<GameController>().ResetLevel(-1);
         }
 
         throwRequired = Input.GetMouseButtonDown(0);
 
-        if (throwRequired)
+        if (throwRequired && GameController.paused == false)
         {
-            Debug.Log("hi");
             Treat currentTreatThrown = Instantiate(treat, treatHolder).GetComponent<Treat>();
             currentTreatThrown.GetComponent<Transform>().position = treatSpawnLocation.position;
             currentTreatThrown.GetComponent<Transform>().rotation = UnityEngine.Random.rotation;
@@ -94,5 +93,6 @@ public class PlayerController : MonoBehaviour
     {
         treatHolder = new GameObject().transform;
         treatHolder.name = "treat holder";
+
     }
 }

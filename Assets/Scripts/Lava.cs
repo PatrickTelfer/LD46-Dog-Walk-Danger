@@ -9,6 +9,9 @@ public class Lava : MonoBehaviour
 
     private void Update()
     {
-        transform.position = new Vector3(transform.position.x, transform.position.y + lavaRiseSpeed, transform.position.z);
+        if (GameController.paused == false)
+        {
+            transform.position = new Vector3(transform.position.x, transform.position.y + lavaRiseSpeed, transform.position.z);
+        }
     }
 }

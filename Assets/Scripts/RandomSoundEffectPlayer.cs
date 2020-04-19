@@ -12,11 +12,23 @@ public class RandomSoundEffectPlayer : MonoBehaviour
     {
         source = GetComponent<AudioSource>();
         PlayerController.onLookAtDog += Player_OnLookAtDog;
+        LavaTrigger.OnDogInLava += Lava_OnDogInLava;
     }
 
     void Player_OnLookAtDog(string error)
     {
         playRandomSoundEffect();
+    }
+
+    void Lava_OnDogInLava(string error)
+    {
+        playRandomSoundEffect();
+    }
+
+    private void OnDestroy()
+    {
+        PlayerController.onLookAtDog -= Player_OnLookAtDog;
+        LavaTrigger.OnDogInLava -= Lava_OnDogInLava;
     }
 
     private void playRandomSoundEffect()

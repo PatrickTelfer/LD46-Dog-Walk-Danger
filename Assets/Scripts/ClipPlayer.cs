@@ -17,6 +17,13 @@ public class ClipPlayer : MonoBehaviour
         {
             Goal.onFinishLevel += Goal_OnFinishLevel;
         }
+
+    }
+
+    private void OnDestroy()
+    {
+        PlayerController.onThrowTreat -= Player_OnThrowTreat;
+        Goal.onFinishLevel -= Goal_OnFinishLevel;
     }
 
     void Goal_OnFinishLevel(string error)

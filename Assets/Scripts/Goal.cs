@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 using UnityEngine.SceneManagement;
 
 public class Goal : MonoBehaviour
 {
+    public static Action<string> onFinishLevel;
     public int nextSceneIndex;
     public bool loadStarted = false;
     public float time;
@@ -18,6 +20,7 @@ public class Goal : MonoBehaviour
         if (other.gameObject.tag == "Dog")
         {
             GameController.win = true;
+            onFinishLevel?.Invoke("");
             StartCoroutine(LoadNextScene());
         }
     }
@@ -29,10 +32,13 @@ public class Goal : MonoBehaviour
 
         Time.timeScale = 0.3f;
         yield return new WaitForSeconds(time);
-        GameObject musicPlayer = GameObject.FindGameObjectWithTag("music");
-        if (musicPlayer != null)
+        GameObject[] musicPlayers = GameObject.FindGameObjectsWithTag("music");
+        if (musicPlayers != null)
         {
-            DontDestroyOnLoad(musicPlayer);
+            foreach(GameObject o in musicPlayers)
+            {
+                DontDestroyOnLoad(o);
+            }
 
         }
         SceneManager.LoadScene(nextSceneIndex, LoadSceneMode.Single);

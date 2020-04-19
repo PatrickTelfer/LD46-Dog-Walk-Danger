@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/level2.unity
     guid: a44c8a96c9b7423499e07fb0f35b2067
+  - enabled: 1
+    path: Assets/Scenes/level3.unity
+    guid: 9a59946cd3a9057439cfe9add507c815
+  - enabled: 1
+    path: Assets/Scenes/Twisty [2].unity
+    guid: 1812de4569f5bd7458d2f7f3a7b415b5
   m_configObjects: {}

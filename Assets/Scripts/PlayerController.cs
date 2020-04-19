@@ -6,6 +6,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public static event Action<Treat> onThrowTreat;
+    public static event Action<string> onLookAtDog;
+
+    public Camera cam;
 
     public float treatLaunchSpeed = 10f;
 
@@ -67,9 +70,22 @@ public class PlayerController : MonoBehaviour
             Debug.Log("hi");
             Treat currentTreatThrown = Instantiate(treat, treatHolder).GetComponent<Treat>();
             currentTreatThrown.GetComponent<Transform>().position = treatSpawnLocation.position;
-            //currentTreatThrown.GetComponent<Transform>().rotation = UnityEngine.Random.rotation;
+            currentTreatThrown.GetComponent<Transform>().rotation = UnityEngine.Random.rotation;
             currentTreatThrown.GetComponent<Rigidbody>().AddForce((treatSpawnLocation.forward) * treatLaunchSpeed);
             onThrowTreat?.Invoke(currentTreatThrown);
+        }
+
+        RaycastHit hit;
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+
+        if (Physics.Raycast(ray, out hit))
+        {
+            if (hit.collider.gameObject.tag == "Dog")
+            {
+                onLookAtDog?.Invoke("");
+            }
+
+            // Do something with the object that was hit by the raycast.
         }
 
     }
